@@ -292,6 +292,10 @@
   (when (and (boundp 'flymake-mode) flymake-mode)
     (concat (mood-line--string-trim (format-mode-line flymake--mode-line-format)) "  ")))
 
+(defun mood-line-segment-nyan ()
+  (when (and (boundp 'nyan-mode) nyan-mode)
+    (concat (mood-line--string-trim (nyan-create)) "  ")))
+
 (defun mood-line-segment-process ()
   "Displays the current value of `mode-line-process' in the mode-line."
   (let ((process-info (format-mode-line mode-line-process)))
@@ -334,7 +338,8 @@
                              (:eval (mood-line-segment-buffer-name))
                              (:eval (mood-line-segment-anzu))
                              (:eval (mood-line-segment-multiple-cursors))
-                             (:eval (mood-line-segment-position))))
+                             (:eval (mood-line-segment-position))
+                             (:eval (mood-line-segment-nyan))))
 
                           ;; Right
                           (format-mode-line
